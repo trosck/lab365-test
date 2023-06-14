@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+
+  auth-service:
+    image: 'trosckey/lab365-test-auth'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongo
+    environment:
+      MONGODB_URI: mongodb://mongo:27017
+      MONGODB_NAME: prod
+      JWT_SECRET: "secret"
+      APP_PORT: 3000
+
+  todo-service:
+    image: 'trosckey/lab365-test-todo'
+    ports:
+      - '3001:3001'
+    depends_on:
+      - mongo
+      - auth-service
+    environment:
+      MONGODB_URI: mongodb://mongo:27017
+      MONGODB_NAME: prod
+      APP_PORT: 3001
+      AUTH_SERVICE: http://localhost:3000
+
+  mongo:
+    image: mongo
+    ports:
+    - '27017:27017'
