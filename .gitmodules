@@ -1,0 +1,6 @@
+[submodule "lab365-test-auth"]
+	path = lab365-test-auth
+	url = git@github.com:trosck/lab365-test-auth.git
+[submodule "lab365-test-todo"]
+	path = lab365-test-todo
+	url = git@github.com:trosck/lab365-test-todo.git
